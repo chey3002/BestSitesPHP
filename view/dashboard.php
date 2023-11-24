@@ -34,7 +34,7 @@
                                     <div class="col-md-8">
                                         <h4><?php echo $site['title']; ?></h4>
                                         <p><?php echo $site['description']; ?></p>
-                                        <p><?php echo $site['average_rating']; ?></p>
+                                        <p><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
                                         <p><?php echo $site['category']; ?></p>
                                     </div>
                                 </div>
