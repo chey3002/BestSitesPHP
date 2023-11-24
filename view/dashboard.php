@@ -95,7 +95,7 @@
                                 <div class="row">
                                     <img class="object-fit-cover border rounded img-thumbnail img-fluid" style="width:100%; height:100px" src="<?php echo $site['image_url']; ?>" alt="<?php echo $site['title']; ?>">
                                     <h5><?php echo $site['title']; ?></h5>
-                                    <p><?php echo $site['average_rating']; ?></p>
+                                        <p><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
                                 </div>
                             </div>
                         </div>
