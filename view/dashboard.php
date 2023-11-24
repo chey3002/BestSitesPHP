@@ -1,6 +1,24 @@
 <div class="row">
     <div class="col-md-10">
         <div class="row mt-3">
+        <form method="post" action="index.php?controller=sites&action=listByCategoryAndRating" class="form-inline mb-3">
+            <div class="form-group mr-2">
+                <label for="category" class="mr-2">Categoría:</label>
+                <select class="form-control" name="category_id" id="category" required>
+                    <option value="0">Todos</option>                  
+                    <option value="1">Programación</option>
+                    <option value="2">Diseño</option>
+                    <option value="3">Idiomas</option>
+                    <option value="4">Ciencias</option>
+                    <option value="5">Arte</option>
+                </select>
+            </div>
+            <div class="form-group mr-2">
+    <label for="min_rating" class="mr-2">Calificación mínima:</label>
+    <input type="number" class="form-control" name="min_rating" id="min_rating" value="0" min="0" max="5" placeholder="Calificación mínima" required>
+</div>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
             <?php
             if (count($dataToView["data"]["data"]) > 0) {
                 foreach ($dataToView["data"]["data"] as $site) {
@@ -44,7 +62,7 @@
                 foreach ($dataToView["data"]["topFive"] as $site) {
                     ?>
                     <div class="col-md-12 mb-3">
-                        <div class="card border border-secondary">
+                        <div class="card border border-light">
                             <div class="card rounded p-3">
                                 <!-- Rellenar los datos del sitio -->
                                 <div class="row">

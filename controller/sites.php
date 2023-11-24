@@ -143,5 +143,39 @@ public function listAll(){
 
     return $dataToView;
     }
-
+   
+    public function listByCategoryAndRating() {
+        $this->page_title = 'Sitios por Calificación y Categoría';
+       $this->view = 'dashboard';
+        // Inicializar variables para almacenar los datos enviados por el formulario.
+        $minRating = 0;
+        $categoryId = null;
+        
+        // Verificar si se ha enviado el formulario con los filtros.
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Recoger y validar/sanitizar los datos del formulario.
+            $minRating = isset($_POST['min_rating']) ? (float)$_POST['min_rating'] : $minRating;
+            $categoryId = isset($_POST['category_id']) ? (int)$_POST['category_id'] : $categoryId;
+    
+            // Llama al método del modelo para obtener sitios por calificación y categoría.
+            $dataToView['data'] = $this->noteObj->getSitesByCategoryAndRating($categoryId, $minRating);
+        }
+        
+       $dataToView["topFive"] = $this->noteObj->topFive();
+        return $dataToView;
+        
+    }
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+
+    
+

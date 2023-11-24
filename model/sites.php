@@ -94,4 +94,65 @@ class Sites {
         return $stmt->fetchAll();
     }
 
+    public function getSitesByCategoryAndRating($categoryId, $minRating) {
+        $this->getconnection();
+        if($categoryId>0){
+            $sql = "SELECT 
+            s.id, 
+            s.title, 
+            s.description, 
+            s.url, 
+            s.image_url, 
+            c.name AS category, 
+            IFNULL(AVG(r.rating), 0) AS average_rating
+        FROM 
+            sites s
+        INNER JOIN 
+            categories c ON s.category_id = c.id
+        LEFT JOIN 
+            ratings r ON s.id = r.site_id
+        WHERE 
+            c.id = :category_id
+        GROUP BY 
+            s.id
+        HAVING 
+            average_rating >= :min_rating";
+
+$stmt = $this->connection->prepare($sql);
+$stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+$stmt->bindParam(':min_rating', $minRating, PDO::PARAM_INT);
+$stmt->execute();
+
+return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }else{
+            $sql = "SELECT 
+            s.id, 
+            s.title, 
+            s.description, 
+            s.url, 
+            s.image_url, 
+            c.name AS category, 
+            IFNULL(AVG(r.rating), 0) AS average_rating
+        FROM 
+            sites s
+        INNER JOIN 
+            categories c ON s.category_id = c.id
+        LEFT JOIN 
+            ratings r ON s.id = r.site_id
+        GROUP BY 
+            s.id
+        HAVING 
+            average_rating >= :min_rating";
+
+$stmt = $this->connection->prepare($sql);
+$stmt->bindParam(':min_rating', $minRating, PDO::PARAM_INT);
+$stmt->execute();
+
+return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+       
+    }
+    
 }
+    
+    
