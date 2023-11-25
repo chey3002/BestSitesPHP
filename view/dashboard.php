@@ -29,8 +29,15 @@
                                 <!-- Rellenar los datos del sitio -->
                                 <div class="row">
                                     <div class="col-md-4 d-flex justify-content-center align-middle">
-                                        <img class="object-fit-cover border rounded img-thumbnail img-fluid" style="width:100px; height:100px" src="<?php echo $site['image_url']; ?>" alt="<?php echo $site['title']; ?>">
-                                    </div>
+                                <img
+                                class="object-fit-cover border rounded img-thumbnail img-fluid"
+                                style="width: 100px; height: 100px"
+                                src="<?php echo $site['image_url']; ?>"
+                                alt="<?php echo $site['title']; ?>"
+                                onerror="cargarImagenPorDefecto(this)"
+                                />
+
+                                </div>
                                     <div class="col-md-8">
                                         <h4><?php echo $site['title']; ?></h4>
                                         <p><?php echo $site['description']; ?></p>
@@ -49,7 +56,7 @@
                                                 $siteRatingId = 'rating_' . $site['id'];
 
                                                 // Utiliza una variable única para cada conjunto de estrellas
-                                                $ratingValue = isset($_POST[$siteRatingId]) ? $_POST[$siteRatingId] : 0;
+                                                $ratingValue = isset($_POST[$siteRatingId]) ? $_POST[$siteRatingId] : 3;
 
                                                 for ($i = 5; $i >= 1; $i--) :
                                                 ?>
@@ -93,7 +100,12 @@
                             <div class="card rounded p-3">
                                 <!-- Rellenar los datos del sitio -->
                                 <div class="row">
-                                    <img class="object-fit-cover border rounded img-thumbnail img-fluid" style="width:100%; height:100px" src="<?php echo $site['image_url']; ?>" alt="<?php echo $site['title']; ?>">
+                                    <img class="object-fit-cover border rounded img-thumbnail img-fluid" 
+                                    style="width:100%; height:100px" 
+                                    src="<?php echo $site['image_url']; ?>" 
+                                    alt="<?php echo $site['title']; ?>"
+                                    onerror="cargarImagenPorDefecto(this)"
+                                    >
                                     <h5><?php echo $site['title']; ?></h5>
                                     <p><?php echo $site['average_rating']; ?></p>
                                 </div>
@@ -107,3 +119,10 @@
         </div>
     </div>
 </div>
+<script>
+function cargarImagenPorDefecto(img) {
+    img.onerror = null; // Evita bucles infinitos si la imagen por defecto también falla
+    img.src = 'https://cdn-icons-png.flaticon.com/512/5996/5996637.png';
+    img.alt = 'default image';
+}
+</script>

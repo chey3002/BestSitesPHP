@@ -14,7 +14,7 @@
 								<!-- Rellenar los datos del sitio -->
 								<div class="row h-100">
 									<div class="col-md-4 d-flex justify-content-center align-middle">
-										<img style="width:100px; height:100px" src="<?php echo $site['image_url']; ?>" alt="<?php echo $site['title']; ?>" class="img-thumbnail img-fluid" >
+										<img style="width:100px; height:100px" src="<?php echo $site['image_url']; ?>" alt="<?php echo $site['title']; ?>" class="img-thumbnail img-fluid" onerror="cargarImagenPorDefecto(this)">
 									</div>
 									<div class="col-md-8">
 										<h4><?php echo $site['title']; ?></h4>
@@ -42,3 +42,10 @@
 		?>
 	</div>
 </div>
+<script>
+function cargarImagenPorDefecto(img) {
+    img.onerror = null; // Evita bucles infinitos si la imagen por defecto también falla
+    img.src = 'https://cdn-icons-png.flaticon.com/512/5996/5996637.png';
+    img.alt = 'default image';
+}
+</script>
