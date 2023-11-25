@@ -107,7 +107,7 @@
                                     onerror="cargarImagenPorDefecto(this)"
                                     >
                                     <h5><?php echo $site['title']; ?></h5>
-                                    <p><?php echo $site['average_rating']; ?></p>
+                                        <p><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
                                 </div>
                             </div>
                         </div>
