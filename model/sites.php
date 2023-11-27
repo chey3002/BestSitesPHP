@@ -174,6 +174,53 @@ return $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $stmt->fetch();
     
 }
+
     
+    public function getSitesOrdered($orderBy, $categoryId, $minRating) {
+        // Asumiendo que ya tienes una conexión activa a la base de datos.
+        $orderClause = $this->getOrderClause($orderBy);
+        $categoryClause = $categoryId > 0 ? "AND categories.id = :category_id" : "";
+        $minRatingClause = $minRating > 0 ? "HAVING average_rating >= :min_rating" : "";
+    
+        $sql = "SELECT sites.id, sites.title, sites.url, sites.image_url, sites.description, 
+                       categories.name AS category, 
+                       IFNULL(AVG(ratings.rating), 0) AS average_rating 
+                FROM sites 
+                JOIN categories ON sites.category_id = categories.id 
+                LEFT JOIN ratings ON sites.id = ratings.site_id 
+                WHERE 1 = 1
+                $categoryClause
+                GROUP BY sites.id 
+                $minRatingClause
+                $orderClause";
+    
+        $stmt = $this->connection->prepare($sql);
+    
+        if ($categoryId > 0) {
+            $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+        }
+        if ($minRating > 0) {
+            $stmt->bindParam(':min_rating', $minRating, PDO::PARAM_INT);
+        }
+    
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
+    private function getOrderClause($orderType) {
+        switch ($orderType) {
+            case 'rating_asc':
+                return "ORDER BY average_rating ASC";
+            case 'rating_desc':
+                return "ORDER BY average_rating DESC";
+            case 'alpha_asc':
+                return "ORDER BY title ASC";
+            case 'alpha_desc':
+                return "ORDER BY title DESC";
+            default:
+                return "ORDER BY title ASC";
+        }
+    }
     
 }

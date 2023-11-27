@@ -12,7 +12,7 @@
 			</div>
 			<div class="row">
 				<input type="submit" value="Registrarse" class="btn btn-primary col-md-5 ms-3 me-auto"/>
-				<a class="btn btn-outline-secondary col-md-5 me-3" href="index.php?controller=user&action=login">Iniciar sesión</a>
+				<a class="btn btn-outline-info col-md-5 me-3" href="index.php?controller=user&action=login">Iniciar sesión</a>
 			</div>
 		</div>
 	</form>

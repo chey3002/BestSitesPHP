@@ -181,6 +181,33 @@ public function listAll(){
     
     
     
+    public function listByCategoryAndRating1() {
+        $this->page_title = 'Sitios por Calificación y Categoría';
+        $this->view = 'dashboard';
+    
+        // Inicializar variables para almacenar los datos enviados por el formulario.
+        $minRating = 0;
+        $categoryId = 0; // Ajuste para garantizar que se maneje 'Todos' correctamente.
+        $orderBy = 'alpha_asc'; // Valor predeterminado de la ordenación.
+    
+        // Verificar si se ha enviado el formulario con los filtros.
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Recoger y validar/sanitizar los datos del formulario.
+            $minRating = isset($_POST['min_rating']) ? (float)$_POST['min_rating'] : $minRating;
+            $categoryId = isset($_POST['category_id']) ? (int)$_POST['category_id'] : $categoryId;
+            $orderBy = isset($_POST['order_by']) ? $_POST['order_by'] : $orderBy;
+    
+            // Llama al método del modelo para obtener sitios ordenados.
+            $dataToView['data'] = $this->noteObj->getSitesOrdered($orderBy, $categoryId, $minRating);
+        } else {
+            // Si no hay una solicitud POST, se pueden mostrar todos los sitios o manejarlo como prefieras.
+            $dataToView['data'] = $this->noteObj->getAllNotes();
+        }
+    
+        $dataToView["topFive"] = $this->noteObj->topFive();
+        return $dataToView;
+    }
+    
     
 }
 

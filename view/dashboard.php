@@ -1,24 +1,36 @@
 <div class="row">
     <div class="col-md-10">
         <div class="row mt-3">
-        <form method="post" action="index.php?controller=sites&action=listByCategoryAndRating" class="form-inline mb-3">
-            <div class="form-group mr-2">
-                <label for="category" class="mr-2">Categoría:</label>
-                <select class="form-control" name="category_id" id="category" required>
-                    <option value="0">Todos</option>                  
-                    <option value="1">Programación</option>
-                    <option value="2">Diseño</option>
-                    <option value="3">Idiomas</option>
-                    <option value="4">Ciencias</option>
-                    <option value="5">Arte</option>
-                </select>
-            </div>
-            <div class="form-group mr-2">
-    <label for="min_rating" class="mr-2">Calificación mínima:</label>
-    <input type="number" class="form-control" name="min_rating" id="min_rating" value="0" min="0" max="5" placeholder="Calificación mínima" required>
-</div>
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-        </form>
+        <form method="post" action="index.php?controller=sites&action=listByCategoryAndRating1" class="form-inline mb-3">
+        <!-- Filtro por categoría -->
+        <div class="form-group mr-2">
+            <label for="category" class="mr-2">Categoría:</label>
+            <select class="form-control" name="category_id" id="category" required>
+                <option value="0">Todos</option>                  
+                <option value="1">Programación</option>
+                <option value="2">Diseño</option>
+                <option value="3">Idiomas</option>
+                <option value="4">Ciencias</option>
+                <option value="5">Arte</option>
+            </select>
+        </div>
+        <!-- Filtro por calificación mínima -->
+        <div class="form-group mr-2">
+            <label for="min_rating" class="mr-2">Calificación mínima:</label>
+            <input type="number" class="form-control" name="min_rating" id="min_rating" value="0" min="0" max="5" required>
+        </div>
+        <!-- Selector de ordenación -->
+        <div class="form-group mr-2">
+            <label for="order_by" class="mr-2">Ordenar por:</label>
+            <select class="form-control" name="order_by" id="order_by">
+                <option value="alpha_asc">Nombre A-Z</option>
+                <option value="alpha_desc">Nombre Z-A</option>
+                <option value="rating_asc">Calificación ascendente</option>
+                <option value="rating_desc">Calificación descendente</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
             <?php
             if (count($dataToView["data"]["data"]) > 0) {
                 foreach ($dataToView["data"]["data"] as $site) {
@@ -44,7 +56,7 @@
                                         <h4 ><a href="index.php?controller=sites&action=details&id=<?php echo $site['id']; ?>" style="text-decoration: none;" class="text-primary"><?php echo $site['title']; ?></a></h4>
                                         <p><?php echo $site['description']; ?></p>
                                         <p class="text-warning"><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
-                                        <p class="text-secondary"><?php echo $site['category']; ?></p>
+                                        <p class="text-info"><?php echo $site['category']; ?></p>
                                     </div>
                                 </div>
                                    <!-- Sección de estrellas -->
