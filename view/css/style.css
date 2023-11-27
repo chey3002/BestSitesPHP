@@ -81,8 +81,8 @@
 /* ---------------------Kevin----------------- */
 
 .main-img img {
-    width: 45%;
-    height: auto;
+    width: 250px;
+    height: 250px;
 }
 
 .main-text h1 {
@@ -117,7 +117,6 @@
 }
 
 .text-content {
-    margin-left: -240px;
     /* Ajusté el margen izquierdo para acercar el texto a la imagen */
 }
 
@@ -132,7 +131,6 @@
 
 .about-site {
     margin-top: 10px;
-    margin-left: -240px;
 }
 
 .icon-link {

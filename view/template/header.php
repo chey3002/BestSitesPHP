@@ -30,7 +30,7 @@
 				</ul>
 				<div class="d-flex ">
 					<h5 class="align-middle m-auto me-3 navbar-brand text-uppercase"><?php echo  $_SESSION['username']; ?></h5>
-					<a href="index.php?controller=user&action=logout" class="btn btn-outline-danger">Cerrar sesión</a>
+					<a href="index.php?controller=user&action=logout" class="btn btn-danger">Cerrar sesión</a>
 					</div>
 				</div>
 			</div>

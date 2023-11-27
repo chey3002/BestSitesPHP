@@ -18,10 +18,12 @@ if(isset($dataToView["data"]["rating"]["rating"]))$user_rating=$dataToView["data
 
 <section class="all">
     <div class="border-primary boxds">
-        <div class="main-img">
+        <div class="main-img" style="width: 250px; height: 250px">
             <img src="<?php echo $image; ?>" alt="Imagen del sitio"
-                                                    onerror="cargarImagenPorDefecto(this)"
->
+            class="object-fit-cover border rounded img-thumbnail img-fluid"
+            style="width: 250px; height: 250px"
+             onerror="cargarImagenPorDefecto(this)"
+            >
         </div>
         <div class="main-texta">
             <div class="text-content">
