@@ -152,7 +152,28 @@ return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
        
     }
+
+    public function sitesDetails($id) {
+        $this->getconnection();
+       $sql = "SELECT sites.*, users.username AS user_name, AVG(ratings.rating) AS average_rating, categories.name AS category_name, ratings.site_id AS rating_site_id
+        FROM $this->table
+        INNER JOIN users ON sites.user_id = users.id
+        LEFT JOIN ratings ON sites.id = ratings.site_id
+        LEFT JOIN categories ON sites.category_id = categories.id
+        WHERE sites.id = ?
+        GROUP BY sites.id, users.id, categories.id, ratings.site_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+    public function getRating($id,$user_id) {
+        $this->getconnection();
+        $sql = "SELECT * FROM ratings WHERE site_id = ? AND user_id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id,$user_id]);
+        return $stmt->fetch();
     
 }
     
     
+}

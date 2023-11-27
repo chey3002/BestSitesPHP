@@ -29,49 +29,26 @@
                                 <!-- Rellenar los datos del sitio -->
                                 <div class="row">
                                     <div class="col-md-4 d-flex justify-content-center align-middle">
-                                <img
-                                class="object-fit-cover border rounded img-thumbnail img-fluid"
-                                style="width: 100px; height: 100px"
-                                src="<?php echo $site['image_url']; ?>"
-                                alt="<?php echo $site['title']; ?>"
-                                onerror="cargarImagenPorDefecto(this)"
-                                />
+                                <a href="<?php echo $site['url']; ?>" target="_blank">
+                                    <img
+                                    class="object-fit-cover border rounded img-thumbnail img-fluid"
+                                    style="width: 100px; height: 100px"
+                                    src="<?php echo $site['image_url']; ?>"
+                                    alt="<?php echo $site['title']; ?>"
+                                    onerror="cargarImagenPorDefecto(this)"
+                                    />
+                                </a>
 
                                 </div>
                                     <div class="col-md-8">
-                                        <h4><?php echo $site['title']; ?></h4>
+                                        <h4 ><a href="index.php?controller=sites&action=details&id=<?php echo $site['id']; ?>" style="text-decoration: none;" class="text-primary"><?php echo $site['title']; ?></a></h4>
                                         <p><?php echo $site['description']; ?></p>
-                                        <p><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
-                                        <p><?php echo $site['category']; ?></p>
+                                        <p class="text-warning"><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
+                                        <p class="text-secondary"><?php echo $site['category']; ?></p>
                                     </div>
                                 </div>
                                    <!-- Sección de estrellas -->
-                                <form action="index.php?controller=stars&action=calificar" method="post">
-                                    <div class="container d-flex justify-content-center mt-6">
-                                        <div class="rate py-1 text-white mt-2 row">
-                                            <h6 class="mb-0">Califica la página</h6>
-                                            <div class="rating col">
-                                                <?php
-                                                // Usa la ID del sitio para crear identificadores únicos
-                                                $siteRatingId = 'rating_' . $site['id'];
-
-                                                // Utiliza una variable única para cada conjunto de estrellas
-                                                $ratingValue = isset($_POST[$siteRatingId]) ? $_POST[$siteRatingId] : 3;
-
-                                                for ($i = 5; $i >= 1; $i--) :
-                                                ?>
-                                                    <input type="radio" name= "rating" value="<?php echo $i; ?>" id="<?php echo $siteRatingId . '_' . $i; ?>" <?php echo ($ratingValue == $i) ? 'checked' : ''; ?>>
-                                                    <label for="<?php echo $siteRatingId . '_' . $i; ?>">☆</label>
-                                                <?php endfor; ?>
-                                            </div>
-                                            <div class="buttons px-4 mt-3 text-center col">
-                                                <!-- Agregado el campo oculto para enviar el ID del sitio -->
-                                                <input type="hidden" name="site_id" value="<?php echo $site['id']; ?>">
-                                                <button type="submit" class="btn btn-primary pt-1 pb-1 btn-block rating-submit">Enviar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                              
                             </div>
                         </div>
                     </div>
@@ -100,14 +77,16 @@
                             <div class="card rounded p-3">
                                 <!-- Rellenar los datos del sitio -->
                                 <div class="row">
-                                    <img class="object-fit-cover border rounded img-thumbnail img-fluid" 
-                                    style="width:100%; height:100px" 
-                                    src="<?php echo $site['image_url']; ?>" 
-                                    alt="<?php echo $site['title']; ?>"
-                                    onerror="cargarImagenPorDefecto(this)"
-                                    >
-                                    <h5><?php echo $site['title']; ?></h5>
-                                        <p><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
+                                    <a href="<?php echo $site['url']; ?>" target="_blank">
+                                        <img class="object-fit-cover border rounded img-thumbnail img-fluid" 
+                                        style="width:100%; height:100px" 
+                                        src="<?php echo $site['image_url']; ?>" 
+                                        alt="<?php echo $site['title']; ?>"
+                                        onerror="cargarImagenPorDefecto(this)"
+                                        >
+                                    </a>
+                                    <h5><a href="index.php?controller=sites&action=details&id=<?php echo $site['id']; ?>" style="text-decoration: none;" class="text-primary"><?php echo $site['title']; ?></a></h5>
+                                        <p class="text-warning"><?php echo number_format($site['average_rating'], 1); ?> ☆</p>
                                 </div>
                             </div>
                         </div>

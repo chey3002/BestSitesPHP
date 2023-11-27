@@ -65,7 +65,7 @@ class starsController {
         $ratingsModel->actualizarCalificacion($user_id, $site_id, $nuevaCalificacion);
 
         // Redirigir a la página del sitio o realizar otra acción según tu lógica
-        header('Location: index.php?controller=user&action=dashboard');
+        header("Location: index.php?controller=sites&action=details&id=" . urlencode($site_id));
         exit();
     }
 }

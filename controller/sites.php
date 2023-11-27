@@ -165,6 +165,18 @@ public function listAll(){
         return $dataToView;
         
     }
+
+        public function details($id = null){
+		$this->page_title = 'Detalles';
+		$this->view = 'site_detail';
+		if(isset($_GET["id"])) $id = $_GET["id"];
+        //obtener la calificación asignada por el usuario en el sitio
+        $user_id=$_SESSION['user_id'];
+        $dataToView["rating"] = $this->noteObj->getRating($id,$user_id);
+        $dataToView["data"] = $this->noteObj->sitesDetails($id);
+        return $dataToView;
+	
+	}
     
     
     

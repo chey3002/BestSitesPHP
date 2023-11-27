@@ -26,37 +26,39 @@
     justify-content: center;
 }
 
-.rating > input {
+.rating>input {
     display: none;
 }
 
-.rating > label {
+.rating>label {
     position: relative;
     width: 1em;
     font-size: 40px;
     font-weight: 300;
     color: #FFD600;
     cursor: pointer;
-    user-select: none; /* Evita la selección de texto al hacer clic */
+    user-select: none;
+    /* Evita la selección de texto al hacer clic */
 }
 
-.rating > label::before {
+.rating>label::before {
     content: "\2605";
     position: absolute;
     opacity: 0;
 }
 
-.rating > label:hover:before,
-.rating > label:hover~label:before {
+.rating>label:hover:before,
+.rating>label:hover~label:before {
     opacity: 1 !important;
-    user-select: none; /* Evita la selección de texto al hacer clic */
+    user-select: none;
+    /* Evita la selección de texto al hacer clic */
 }
 
-.rating > input:checked~label:before {
+.rating>input:checked~label:before {
     opacity: 1;
 }
 
-.rating:hover > input:checked~label:before {
+.rating:hover>input:checked~label:before {
     opacity: 0.4;
 }
 
@@ -72,5 +74,144 @@
 }
 
 .rating-submit:hover {
+    color: #fff;
+}
+
+
+/* ---------------------Kevin----------------- */
+
+.main-img img {
+    width: 45%;
+    height: auto;
+}
+
+.main-text h1 {
+    font-size: var(--h1-font);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.main-text h4 {
+    margin: 10px 0;
+    /* Reduzco el margen superior del h4 */
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--other-color);
+}
+
+.rowds {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.main-row {
+    text-align: center;
+
+}
+
+.boxds {
+    display: flex;
+    align-items: flex-start;
+}
+
+.text-content {
+    margin-left: -240px;
+    /* Ajusté el margen izquierdo para acercar el texto a la imagen */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info i {
+    margin-right: 5px;
+}
+
+.about-site {
+    margin-top: 10px;
+    margin-left: -240px;
+}
+
+.icon-link {
+    /* Estilos para el enlace del ícono */
+    color: #3498db;
+    /* Color del ícono */
+    text-decoration: none;
+    /* Quitar subrayado predeterminado de los enlaces */
+}
+
+.icon-link:hover {
+    text-decoration: none;
+    /* Quitar subrayado al pasar el ratón */
+}
+
+/* Añadir una regla para asegurar que no haya subrayado en estado normal */
+.icon-link:link {
+    text-decoration: none;
+}
+
+.rate2 {
+    margin-left: -850px;
+    /* Ajusta este valor según sea necesario */
+}
+
+.rate2 h6 {
+    margin-left: 28px;
+
+}
+
+.rating2 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating2>input {
+    display: none;
+}
+
+.rating2>label {
+    position: relative;
+    width: 1em;
+    font-size: 35px;
+    font-weight: 300;
+    color: #FFD600;
+    cursor: pointer;
+    user-select: none;
+    /* Evita la selección de texto al hacer clic */
+}
+
+.rating2>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rating2>label:hover:before,
+.rating2>label:hover~label:before {
+    opacity: 1 !important;
+    user-select: none;
+    /* Evita la selección de texto al hacer clic */
+}
+
+.rating2>input:checked~label:before {
+    opacity: 1;
+}
+
+.rating2:hover>input:checked~label:before {
+    opacity: 0.4;
+}
+
+
+.rating2-submit {
+    border-radius: 10px;
+    color: #fff;
+    height: 30px;
+}
+
+.rating2-submit:hover {
     color: #fff;
 }
