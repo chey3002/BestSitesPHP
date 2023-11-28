@@ -174,6 +174,8 @@ public function listAll(){
         $user_id=$_SESSION['user_id'];
         $dataToView["rating"] = $this->noteObj->getRating($id,$user_id);
         $dataToView["data"] = $this->noteObj->sitesDetails($id);
+        $dataToView["topFive"] = $this->noteObj->topFive();
+        $dataToView["siteQualifications"]=$this->noteObj->getSiteQualifications($id);
         return $dataToView;
 	
 	}

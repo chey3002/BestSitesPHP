@@ -222,5 +222,19 @@ return $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return "ORDER BY title ASC";
         }
     }
+    public function getSiteQualifications($site_id) {
+    $this->getConnection(); // Asumiendo que esta función establece la conexión a la base de datos
+    
+    $sql = "SELECT ratings.id, ratings.rating, users.username AS user_name
+            FROM ratings
+            INNER JOIN users ON ratings.user_id = users.id
+            WHERE ratings.site_id = ?";
+    
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute([$site_id]);
+    
+    return $stmt->fetchAll(); // Devuelve todas las calificaciones del sitio
+}
+
     
 }
