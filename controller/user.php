@@ -9,14 +9,14 @@ class userController {
     public $userObj;
 
     public function __construct() {
-        $this->view = 'login';
+        $this->view = 'login_register';
         $this->page_title = 'Iniciar Sesión';
         $this->userObj = new User();
     }
 
     public function register() {
         $this->page_title = 'Registro de Usuario';
-        $this->view = 'register';
+        $this->view = 'login_register';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
@@ -30,7 +30,7 @@ class userController {
 
             if ($result) {
                 $this->page_title = 'Iniciar Sesión';
-                $this->view = 'login';
+                $this->view = 'login_register';
                 $_GET["response"] = true;
                 $_GET["alert"] = "success";
                 $_GET["text"] = "Registro Exitoso";
@@ -46,15 +46,14 @@ class userController {
 
     public function login() {
         $this->page_title = 'Iniciar Sesión';
-        $this->view = 'login';
+        $this->view = 'login_register';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
             // Validar y procesar el formulario de inicio de sesión
             $user = $this->userObj->authenticateUser($username, $password);
-
+            
             if ($user) {
                 // Iniciar sesión
                 $_SESSION['user_id'] = $user['id'];
